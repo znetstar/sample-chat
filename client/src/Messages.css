@@ -1,0 +1,7 @@
+.message-right {
+	text-align: right;
+}
+
+.message-right > div > div > div {
+	margin-right: 1em !important;
+}

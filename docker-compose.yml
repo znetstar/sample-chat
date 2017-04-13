@@ -1,0 +1,22 @@
+version: '2'
+services:
+  client:
+    build: client
+    volumes:
+    - ./client:/app
+    ports:
+    - "7008:3000"
+  server:
+    build: server
+    volumes:
+    - ./server:/app
+    ports:
+    - "7009:3001"
+    links:
+    - mongo
+  mongo:
+    image: mongo
+    volumes:
+    - mongo:/data
+volumes:
+  mongo: {}

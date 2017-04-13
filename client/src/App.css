@@ -1,0 +1,10 @@
+@import url('/fonts/fonts.css');
+
+.hidden {
+  display: none;
+}
+
+.app-bar-person {
+	position: relative;
+	bottom: .25rem;
+}
