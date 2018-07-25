@@ -40,7 +40,7 @@ class Message extends Component {
 				rightAvatar={ (this.state.who === window.sessionStorage.nickname) ? <AccountIcon style={avatarStyle} /> : null}
 				primaryText={this.state.body}
 				secondaryText={moment(this.state.time).format('h:mma - MM/DD/YYYY')}
-				className={(this.state.who === window.sessionStorage.nickname) ? 'message-right' : 'message-left'}
+				className={(this.state.who === window.sessionStorage.nickname) ? 'message-left' : 'message-right'}
 			/>
 		);
 	}
