@@ -84,7 +84,7 @@ class Messages extends Component {
     window.socket.on('message sent', (message) => {
       let rendered_message = <Message id={message.id} key={message.key} who={window.sessionStorage.nickname} body={message.body} time={message.time} />
       
-      let messages = [rendered_message].concat(this.state.messages);
+      let messages = this.state.messages.concat(rendered_message);
       this.setState({ messages });
     });
 

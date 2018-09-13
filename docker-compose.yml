@@ -1,15 +1,11 @@
 version: '2'
 services:
-  client:
-    build: client
+  app:
+    build: .
     ports:
-    - "7008:3000"
-  server:
-    build: server
-    ports:
-    - "7009:3001"
-    links:
-    - mongo
+    - "3000:3000"
+    environment:
+    - MONGO_URL=mongodb://mongo:27017/sample_chat
   mongo:
     image: mongo
     volumes:

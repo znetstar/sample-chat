@@ -1,17 +1,20 @@
+
+const { Server } = require('http');
+
 const IO = require('socket.io');
-const Server = require('http').Server;
 const async = require('async');
 const uuid = require('uuid');
 const base32 = require('base32');
 const _ = require('lodash');
+const express = require('express');
 
-let port = Number(process.env.PORT) || 3000;
+const app = express();
+const server = new Server(app);
 
-
-let server = new Server();
-let io = IO(server);
-
-const db = require('mongojs')((process.env.MONGO_URL || 'mongodb://mongo:27017/samplechat'), [ 'messages', 'people' ]);
+const port = Number(process.env.PORT) || 3000;
+const io = IO(server);
+const client_dir = `${__dirname}/client/build`;
+const db = require('mongojs')((process.env.MONGO_URL || 'mongodb://localhost:27017/sample_chat'), [ 'messages', 'people' ]);
 
 io.use((socket, next) => {
 	console.log(`socket ${socket.id} has connected`);
@@ -160,7 +163,7 @@ io.use((socket, next) => {
 				{ from: who, to: socket.nickname }
 			]
 		})
-		.sort({ time: -1 })
+		.sort({ time: 1 })
 		.toArray((err, msgs) => {
 			if (!err)
 				socket.emit('load messages', msgs);
@@ -168,6 +171,13 @@ io.use((socket, next) => {
 	});
 
 	next();
+});
+
+app.use(express.static(client_dir));
+
+app.use((req, res) => {
+	res.set('content-type', 'text/html');
+	res.sendFile(`${client_dir}/index.html`);
 });
 
 server.listen(port, (error) => {

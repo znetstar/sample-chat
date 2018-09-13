@@ -4,6 +4,7 @@ import AppBar from './AppBar';
 import LoginDialog from './LoginDialog';
 import io from 'socket.io-client';
 import qs from 'qs';
+import url from 'url';
 
 class App extends Component {
   constructor(props) {
@@ -13,11 +14,9 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    let query_string = {
-      nickname: window.sessionStorage.nickname || void(0)
-    };
+    let query = qs.stringify({ nickname: window.sessionStorage.nickname });
 
-    this.state.socket = window.socket = io.connect(`sample-chat-server.projects.zacharyboyd.nyc/?${qs.stringify(query_string)}`)
+    this.state.socket = window.socket = io.connect(`/?${query}`);
   }
 
   render() {

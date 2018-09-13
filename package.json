@@ -1,0 +1,37 @@
+{
+  "name": "sample-chat",
+  "version": "1.1.0",
+  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/znetstar/sample-chat"
+  },
+  "scripts": {
+    "start": "node ./server.js",
+    "frontend-dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "async": "^2.1.4",
+    "base32": "^0.0.6",
+    "express": "^4.16.3",
+    "lodash": "^4.17.2",
+    "mongojs": "^2.4.0",
+    "socket.io": "^1.7.2",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "material-ui": "^0.16.5",
+    "moment": "^2.17.1",
+    "qs": "^6.3.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-router": "^3.0.0",
+    "react-scripts": "0.8.4",
+    "react-tap-event-plugin": "^2.0.1",
+    "socket.io-client": "^1.7.2",
+    "url": "^0.11.0"
+  }
+}
