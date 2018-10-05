@@ -13,7 +13,7 @@ const server = new Server(app);
 
 const port = Number(process.env.PORT) || 3000;
 const io = IO(server);
-const client_dir = `${__dirname}/client/build`;
+const client_dir = `${__dirname}/build`;
 const db = require('mongojs')((process.env.MONGO_URL || 'mongodb://localhost:27017/sample_chat'), [ 'messages', 'people' ]);
 
 io.use((socket, next) => {

@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8 AS build
 
 WORKDIR /app
 
@@ -6,7 +6,9 @@ ADD package.json /app/package.json
 
 RUN npm install
 
-ADD client /app
+ADD . /app
+
+RUN npm run build
 
 FROM node:8
 
@@ -18,7 +20,9 @@ ADD package.json /app/package.json
 
 RUN npm install
 
-ADD . /app
+ADD server.js /app/server.js
+
+COPY --from=build /app/build /app/build
 
 EXPOSE 3000
 
